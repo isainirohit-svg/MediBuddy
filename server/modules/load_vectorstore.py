@@ -7,6 +7,7 @@ from pinecone import Pinecone, ServerlessSpec
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_google_genai._common import GoogleGenerativeAIError
 
 load_dotenv()
 
@@ -67,7 +68,12 @@ def load_vectorstore(uploaded_files):
         ids = [f"{Path(file_path).stem}-{i}" for i in range(len(chunks))]
 
         print(f"🔍 Embedding {len(texts)} chunks...")
-        embeddings = embed_model.embed_documents(texts)
+        try:
+            embeddings = embed_model.embed_documents(texts)
+        except GoogleGenerativeAIError as e:
+            print(f"❌ Error embedding content: {e}")
+            # Optionally, log or raise a custom error here
+            raise RuntimeError(f"Embedding failed: {e}")
 
         print("📤 Uploading to Pinecone...")
         with tqdm(total=len(embeddings), desc="Upserting to Pinecone") as progress:
