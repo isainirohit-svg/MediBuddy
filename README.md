@@ -1,4 +1,4 @@
-<img width="1911" height="864" alt="image" src="https://github.com/user-attachments/assets/fa5d271b-a835-4cda-b0a1-ac0f7a66661a" />
+<img width="1918" height="910" alt="image" src="https://github.com/user-attachments/assets/ae353a19-e54e-4007-9e75-cba0db297f8a" />
 
 🧠 Project Overview
 This application is a Medical Domain Chatbot built using Retrieval-Augmented Generation (RAG). It allows users to upload their own medical documents (e.g., textbooks, reports), and the system intelligently answers queries by retrieving the most relevant content before generating a final response.
@@ -34,3 +34,4 @@ Vector DB    	Pinecone
 Framework     LangChain
 Backend	      FastAPI
 Deployment	  Render
+
